@@ -1,5 +1,4 @@
 # RealPID
-![Chocolatey](https://img.shields.io/chocolatey/dt/git) ![Bower](https://img.shields.io/bower/l/MI?color=orange) ![Pub Likes](https://img.shields.io/pub/likes/git?color=yellow&label=stars)
 
 An ideal PID is based on the sum of a proportional, integrative and derivative contribution.
 
@@ -76,7 +75,7 @@ When controlling the system manually, it is useful to set the value of the integ
 pid.set_auto_mode(True, last_output=1)
 ```
 ## Reset 
-The PID controllor can be reset calling the ```reset``` method
+The PID controller can be reset calling the ```reset``` method
 ```
 pid.reset()
 ```
