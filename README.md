@@ -1,4 +1,5 @@
 # RealPID
+![GitHub top language](https://img.shields.io/github/languages/top/chentyra/RealPID) ![GitHub](https://img.shields.io/github/license/chentyra/RealPID?color=orange) ![PyPI](https://img.shields.io/pypi/v/realpid?color=blue) ![GitHub issues](https://img.shields.io/github/issues/chentyra/RealPID?color=red) ![GitHub closed issues](https://img.shields.io/github/issues-closed/chentyra/RealPID) 
 
 An ideal PID is based on the sum of a proportional, integrative and derivative contribution.
 
