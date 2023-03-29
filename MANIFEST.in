@@ -1,0 +1,5 @@
+include LICENSE.md
+include README.md
+
+include realpid/*.pyi
+include realpid/py.typed
