@@ -8,7 +8,7 @@ $u(t)= K_P(e(t) + \frac{1}{T_I}\int e(\tau)d\tau+ T_D \frac{de}{dt})$
 
 Controller's transfer function $C(s)$ in Laplace domain is not physically achievable.
 
-$C(s)= \frac{u(t)}{e(t)} = K_P (1+ \frac{1}{T_I \cdot s} + T_D \cdot s = \frac{T_IT_D \cdot s^2 + T_I \cdot s + 1}{T_I \cdot s} )$
+$C(s)= \frac{u(t)}{e(t)} = K_P (1+ \frac{1}{T_I \cdot s} + T_D \cdot s) = \frac{T_IT_D \cdot s^2 + T_I \cdot s + 1}{T_I \cdot s} $
 
 Furthermore, an ideal PD amplifies measurement noise, and thus might lead to large control signals that can drive the actuator into saturation or might even cause damage. Therefore, it is necessary to filter of the derivative action in the high-frequency by defining a factor N. It usually takes on a value between 5 and 20.
 
