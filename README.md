@@ -21,7 +21,7 @@ A Python implementation of a real PID is provided.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
-python -m pip install discretepid
+python -m pip install realpid
 ```
 ## Usage
 ### Basic Usage
