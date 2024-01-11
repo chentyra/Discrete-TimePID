@@ -1,3 +1,30 @@
+[project]
+name = "Discrete-TimePID"
+version = "0.0.1"
+authors = [
+    { name="chentyra" },
+]
+description = "Discrete-Time PID controller"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/chentyra/Discrete-TimePID"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["discretepid"]
+
+[tool.black]
+line-length = 100
+skip-string-normalization = true
+target-version = ["py39", "py38", "py37", "py36"]
