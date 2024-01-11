@@ -1,4 +1,4 @@
-# RealPID
+# Discrete-Time PID
 [![Downloads](https://static.pepy.tech/personalized-badge/realpid?period=total&units=international_system&left_color=grey&right_color=yellow&left_text=downloads)](https://pepy.tech/project/realpid)
 ![GitHub top language](https://img.shields.io/github/languages/top/chentyra/RealPID) ![GitHub](https://img.shields.io/github/license/chentyra/RealPID?color=orange) ![PyPI](https://img.shields.io/pypi/v/realpid?color=blue) ![GitHub issues](https://img.shields.io/github/issues/chentyra/RealPID?color=red) ![GitHub closed issues](https://img.shields.io/github/issues-closed/chentyra/RealPID) 
 
