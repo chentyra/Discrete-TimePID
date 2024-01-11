@@ -46,7 +46,7 @@ output_value= pid(input_value)
 ### An example
 
 ```
-from realpid import PID
+from discretepid import PID
 pid = PID(0.2, 0.6, 0.02, 5, setpoint=1)
 
 while True:
