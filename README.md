@@ -28,7 +28,7 @@ python -m pip install realpid
 
 First of all, include the library:
 ```
-from discrete import PID
+from discretepid import PID
 ```
 To create PID object, call class's constructor where:
 * The first value is **proportional gain** $K_P$
