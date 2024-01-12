@@ -14,14 +14,14 @@ Furthermore, an ideal PD amplifies measurement noise, and thus might lead to lar
 
 $C(s)=K_P (1+ \frac{1}{T_I \cdot s} + \frac{T_D \cdot s}{1+s \cdot T_D/N})$
 
-A Python implementation of a real PID is provided.
+A Python implementation of a discrete-time PID is provided.
 
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
-python -m pip install realpid
+sudo pip install discretepid
 ```
 ## Usage
 ### Basic Usage
@@ -51,6 +51,12 @@ pid = PID(0.2, 0.6, 0.02, 5, setpoint=1)
 
 while True:
     control = pid(v)
+
+```
+### Setpoint
+The controller setpoint can be changed dynamically:
+``` 
+pid.setpoint = 3 
 ```
 ### Sample Time
 
@@ -82,14 +88,14 @@ The PID controller can be reset calling the ```reset``` method
 pid.reset()
 ```
 ## Other Features 
-The value of $K_P$,  $T_I$ , $T_D$ , $N$ can be seen in this way:
+The value of $K_P$,  $T_I$ , $T_D$ , $N$, $setpoint$ can be seen in this way:
 ```
-Kp, Ti, Td,N = pid.components
+Kp, Ti, Td, N, setpoint = pid.components
 ```
 Their values can be changed individually or all at once when the PID is running:
 ```
 pid.Kp = 1.0
-pid.tunings = (1.0, 0.3, 0.01, 10)
+pid.tunings = (1.0, 0.3, 0.01, 10,2) #Kp,Ti,Td,N,setpoint
 ```
 ## License
 Licensed under the [MIT][def]
