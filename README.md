@@ -18,7 +18,7 @@ A Python implementation of a discrete-time PID is provided.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the discrete-time PID.
 
 ```bash
-pip install git+https://github.com/chentyra/Discrete-TimePID.git#egg=discretepid
+sudo pip install git+https://github.com/chentyra/Discrete-TimePID.git#egg=discretepid
 ```
 
 **If the Python package was helpful to you, please give this repository a star!** :star:
