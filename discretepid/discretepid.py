@@ -102,12 +102,12 @@ class PID(object):
     @property
     def tunings(self):
         """The tunings used by the controller """
-        return self.Kp, self.Ti, self.Td,self.N
+        return self.Kp, self.Ti, self.Td,self.N, self.setpoint
 
     @tunings.setter
     def tunings(self, tunings):
         """Set the PID tunings."""
-        self.Kp, self.Ti , self.Td ,self.N = tunings
+        self.Kp, self.Ti , self.Td ,self.N, self.setpoint = tunings
     
     @auto_mode.setter
     def auto_mode(self, enabled):

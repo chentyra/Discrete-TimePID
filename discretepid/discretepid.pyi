@@ -1,8 +1,8 @@
 from typing import Callable, Optional, Tuple
 
 _Limits = Tuple[Optional[float], Optional[float]]
-_Components = Tuple[float, float, float,float]
-_Tunings = Tuple[float, float, float,float]
+_Components = Tuple[float, float, float,float, float]
+_Tunings = Tuple[float, float, float,float, Optional[float]]
 
 def _clamp(value: Optional[float], limits: _Limits) -> Optional[float]: ...
 
