@@ -13,6 +13,15 @@ Furthermore, an ideal PD amplifies measurement noise, and thus might lead to lar
 $C(s)=K_P (1+ \frac{1}{T_I \cdot s} + \frac{T_D \cdot s}{1+s \cdot T_D/N})$
 
 A Python implementation of a discrete-time PID is provided.
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the discrete-time PID.
+
+```bash
+pip install git+https://github.com/chentyra/Discrete-TimePID.git#egg=discretepid
+```
+
+**If the Python package was helpful to you, please give this repository a star!** :star:
 
 ## Usage
 ### Basic Usage
@@ -42,7 +51,6 @@ pid = PID(0.2, 0.6, 0.02, 5, setpoint=1)
 
 while True:
     control = pid(v)
-
 ```
 ### Setpoint
 The controller setpoint can be changed dynamically:
@@ -83,7 +91,7 @@ The value of $K_P$,  $T_I$ , $T_D$ , $N$, $setpoint$ can be seen in this way:
 ```
 Kp, Ti, Td, N, setpoint = pid.components
 ```
-Their values can be changed individually or all at once when the PID is running:
+Their values can be changed individually or all at once(setpoint is optional) when the PID is running:
 ```
 pid.Kp = 1.0
 pid.tunings = (1.0, 0.3, 0.01, 10,2) #Kp,Ti,Td,N,setpoint
