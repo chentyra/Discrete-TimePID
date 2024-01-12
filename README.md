@@ -14,13 +14,6 @@ $C(s)=K_P (1+ \frac{1}{T_I \cdot s} + \frac{T_D \cdot s}{1+s \cdot T_D/N})$
 
 A Python implementation of a discrete-time PID is provided.
 
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-sudo pip install discretepid
-```
 ## Usage
 ### Basic Usage
 
