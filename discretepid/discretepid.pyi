@@ -1,8 +1,8 @@
 from typing import Callable, Optional, Tuple
 
 _Limits = Tuple[Optional[float], Optional[float]]
-_Components = Tuple[float, float, float,float, float]
-_Tunings = Tuple[float, float, float,float, Optional[float]]
+_Components = Tuple[float, float, float,float, float, Optional[float]]
+_Tunings = Tuple[float, float, float,float, float]
 
 def _clamp(value: Optional[float], limits: _Limits) -> Optional[float]: ...
 
@@ -24,6 +24,8 @@ class PID(object):
         sample_time: Optional[float] = ...,
         output_limits: _Limits = ...,
         auto_mode: bool = ...,
+        ramping_rate: Optional[float] = ...,
+        variable_setpoint: Optional[float] = ...,
     ) -> None: ...
     
     def __call__(self, input_: float, dt: Optional[float] = ...) -> Optional[float]: ...
@@ -43,3 +45,5 @@ class PID(object):
     @output_limits.setter
     def output_limits(self, limits: _Limits) -> None: ...
     def reset(self) -> None: ...
+    def change_setpoint(self,new_setpoint: float)-> None: ...
+    def reset_ramping_rate(self) -> None: ...
