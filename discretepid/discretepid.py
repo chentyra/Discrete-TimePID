@@ -21,9 +21,11 @@ class PID(object):
         setpoint=0,
         sample_time=0.01,
         output_limits=(None, None),
-        auto_mode=True
+        auto_mode=True,
+        ramping_rate = None,
+        variable_setpoint = 0
         ):
-        
+
         self.Kp, self.Ti, self.Td, self.N = Kp, Ti, Td,N
         self.setpoint = setpoint
         self.sample_time = sample_time
@@ -39,6 +41,12 @@ class PID(object):
         self._last_output = None
         self._last_error = 0
         self._last_input = None
+        self._start_setpoint= 0
+        self.ramping_rate= ramping_rate
+        self._on_change = True
+        self.start_time = None
+        self.variable_setpoint = variable_setpoint
+        self.prev_setpoint = 0
         
         try:
             self.time_fn = time.monotonic
@@ -57,13 +65,45 @@ class PID(object):
             dt = now - self._last_time if (now - self._last_time) else 1e-16
         elif dt <= 0:
             raise ValueError('dt has negative value {}, must be positive'.format(dt))
-            
+
+        if self.ramping_rate is not None:
+            if self.ramping_rate < 0:
+                raise ValueError('ramping_rate has negative value {}, must be positive'.format(self.ramping_rate))
+            elif round(self.ramping_rate) == 0:
+                self.ramping_rate = None
+
         if self.sample_time is not None and dt < self.sample_time and self._last_output is not None:
-            
             return self._last_output
 
+        if self.setpoint != self._start_setpoint and self.ramping_rate is not None and self._on_change:
+            self.start_time = time.time()
+            self._on_change = False
+
+        if self.start_time is not None and self.ramping_rate is not None:
+            if not self._on_change and self.variable_setpoint != self.setpoint and self.prev_setpoint != self.setpoint:
+                self._start_setpoint = self.variable_setpoint
+                self.prev_setpoint = self.setpoint
+                self.start_time = time.time()
+
+            if time.time() - self.start_time <= self.ramping_rate :
+                dy = (abs(self.setpoint - self._start_setpoint))/(self.ramping_rate/dt)
+                if self.setpoint >= self._start_setpoint:
+                    self.variable_setpoint = self.variable_setpoint + dy
+                    self.variable_setpoint = _clamp(self.variable_setpoint, (self._start_setpoint,self.setpoint))
+                else:
+                    self.variable_setpoint = self.variable_setpoint - dy
+                    self.variable_setpoint = _clamp(self.variable_setpoint, (self.setpoint,self._start_setpoint))
+
+            elif time.time() - self.start_time > self.ramping_rate:
+                self._start_setpoint = self.variable_setpoint
+                self._on_change = True
+                self.start_time = None
+
         #Error Calculation
-        error = self.setpoint - input_
+        if self.ramping_rate is None: 
+            error = self.setpoint - input_
+        else:
+            error = self.variable_setpoint - input_
         d_error = error - (self._last_error if (self._last_error is not None) else error)
         
         #Proportional term
@@ -96,9 +136,9 @@ class PID(object):
 
     @property
     def components(self):
-        """ Values Kp,Ti,Td,N
+        """ Values Kp,Ti,Td,N,ramping_rate
         """
-        return self.Kp, self.Ti, self.Td,self.N
+        return self.Kp, self.Ti, self.Td,self.N, self.ramping_rate
     @property
     def tunings(self):
         """The tunings used by the controller """
@@ -152,3 +192,13 @@ class PID(object):
         self._last_time = self.time_fn()
         self._last_output = None
         self._last_input = None
+
+
+    def change_setpoint(self,new_setpoint):
+        """Change setpoint"""
+        self.prev_setpoint = self.setpoint
+        self.setpoint = new_setpoint
+
+    def reset_ramping_rate(self):
+        """Reset ramp duration"""
+        self.ramping_rate = None
