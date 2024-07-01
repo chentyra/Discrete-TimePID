@@ -39,6 +39,13 @@ To create PID object, call class's constructor where:
 ```
 pid = PID(1, 0.1, 0.05, 2, setpoint=1)
 ```
+With this definition, PID object uses a step change setpoint. The definition of an optional sixth parameter a ramp change setpoint is used by PID object. 
+* The ```ramping_rate``` variable defines the time interval in seconds of the ramp duration.
+
+```
+pid = PID(1, 0.1, 0.05, 2, setpoint=1, ramping_rate=1)
+```
+
 The PID compute a new ```output_value```, on the basis of an ```input_value```, calling the object created.
 ```
 output_value= pid(input_value)
@@ -57,6 +64,18 @@ The controller setpoint can be changed dynamically:
 ``` 
 pid.setpoint = 3 
 ```
+
+### Ramp duration
+The ramp duration can be changed dynamically:
+``` 
+pid.ramping_rate = 1 
+```
+and can be reset calling ```reset_ramping_rate``` method:
+``` 
+pid.reset_ramping_rate()
+```
+> [!WARNING]
+> Setting the ramping_rate variable to 0 is equivalent to using a step change setpoint.
 ### Sample Time
 
 Optionally, a ```sample_time``` can be definied  as last attribute of the instruction which represents the amount of time between one call to another of the updating method:
@@ -81,21 +100,23 @@ When controlling the system manually, it is useful to set the value of the integ
 ```
 pid.set_auto_mode(True, last_output=1)
 ```
-## Reset 
-The PID controller can be reset calling the ```reset``` method
+## Reset PID controller
+The PID controller can be reset calling the ```reset``` method.
 ```
 pid.reset()
 ```
 ## Other Features 
 The value of $K_P$,  $T_I$ , $T_D$ , $N$, $setpoint$ can be seen in this way:
 ```
-Kp, Ti, Td, N, setpoint = pid.components
+Kp, Ti, Td, N, setpoint, ramping_rate = pid.components
 ```
 Their values can be changed individually or all at once(setpoint is optional) when the PID is running:
 ```
 pid.Kp = 1.0
 pid.tunings = (1.0, 0.3, 0.01, 10,2) #Kp,Ti,Td,N,setpoint
 ```
+## Example 
+The ```examples``` folder contains several simulations to help you understand how to use PID.
 ## License
 Licensed under the [MIT][def]
 
