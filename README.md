@@ -115,8 +115,8 @@ Their values can be changed individually or all at once(setpoint is optional) wh
 pid.Kp = 1.0
 pid.tunings = (1.0, 0.3, 0.01, 10,2) #Kp,Ti,Td,N,setpoint
 ```
-## Example 
-The ```examples``` folder contains several simulations to help you understand how to use PID.
+## Examples
+The ```examples``` folder contains several simulations to help you understand how to use PID controller.
 ## License
 Licensed under the [MIT][def]
 
